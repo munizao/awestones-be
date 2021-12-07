@@ -1,10 +1,11 @@
 import Arena from "@colyseus/arena";
 import { monitor } from "@colyseus/monitor";
+import cors from "cors";
 
 /**
  * Import your Room files
  */
-import { MyRoom } from "./rooms/MyRoom";
+import { MyRoom } from "./rooms/Awestones";
 
 export default Arena({
     getId: () => "Your Colyseus App",
@@ -21,6 +22,7 @@ export default Arena({
         /**
          * Bind your custom express routes here:
          */
+        app.use(cors({ credentials: true, origin:['http://localhost:3000'] })); //TODO: add deployed site to origin
         app.get("/", (req, res) => {
             res.send("It's time to kick ass and chew bubblegum!");
         });

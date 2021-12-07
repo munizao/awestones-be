@@ -1,5 +1,5 @@
 import { Room, Client } from "colyseus";
-import { MyRoomState } from "./schema/MyRoomState";
+import { MyRoomState } from "./schema/AwestonesState";
 
 export class MyRoom extends Room<MyRoomState> {
 
@@ -16,10 +16,12 @@ export class MyRoom extends Room<MyRoomState> {
 
   onJoin (client: Client, options: any) {
     console.log(client.sessionId, "joined!");
+    this.state.createPlayer(client.sessionId);
   }
 
   onLeave (client: Client, consented: boolean) {
     console.log(client.sessionId, "left!");
+    this.state.removePlayer(client.userData.playerId);
   }
 
   onDispose() {
