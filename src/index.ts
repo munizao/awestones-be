@@ -8,6 +8,7 @@ const port = Number(process.env.PORT || 2567);
 const app = express();
 
 // app.use(cors({ credentials: true, origin:['http://localhost:3000'] })); //TODO: add deployed site to origin
+// Actually, cors is handled in the library, so I don't need to.
 app.use(express.json());
 
 const server = http.createServer(app);
